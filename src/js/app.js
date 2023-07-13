@@ -83,6 +83,45 @@ function render(variables = {}) {
           </ul>
         </div>
     `;
+
+  let city_country_list = {
+    usa: [null, "Miami", "Detroit", "Los Angeles"],
+    germany: [null, "Munich", "Berlin", "Frankfurt"],
+    venezuela: [null, "Caracas"],
+    canada: [null, "Toronto", "Quebec", "Montreal", "Windsor"]
+  };
+
+  document.getElementById("country_selector").addEventListener(
+    "change",
+    function(city_country_dropdown) {
+      var citySelect = document.getElementById("city_selector");
+      citySelect.innerHTML = "";
+      var cityItems = [];
+      if (this.value == "USA") {
+        cityItems = city_country_list.usa;
+        variables.city = null;
+      } else if (this.value == "Germany") {
+        cityItems = city_country_list.germany;
+        variables.city = null;
+      } else if (this.value == "Canada") {
+        cityItems = city_country_list.canada;
+        variables.city = null;
+      } else if (this.value == "Venezuela") {
+        cityItems = city_country_list.venezuela;
+        variables.city = null;
+      }
+
+      for (var i = 0; i < cityItems.length; i++) {
+        var option = document.createElement("option");
+        option.value = cityItems[i];
+        var textNode = document.createTextNode(cityItems[i]);
+        option.appendChild(textNode);
+        citySelect.appendChild(option);
+        console.log(citySelect);
+      }
+    },
+    false
+  );
 }
 
 /**
